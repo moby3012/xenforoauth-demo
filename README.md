@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NextAuth.js XenForo Demo
 
-## Getting Started
+## Introduction
+This is a Next.js application demonstrating how to implement authentication with NextAuth.js, specifically tailored for XenForo integration.
 
-First, run the development server:
+## Features
+- XenForo authentication
+- Session management
+- Protected routes
+- User profile information display
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Installation
+1. Clone the repository
+2. Run `npm install`
+3. Create `.env` file with required environment variables
+
+## Configuration
+Set up your environment variables in `.env`:
+```
+NEXTAUTH_SECRET=your-secret-key
+XENFORO_API_URL=your-xenforo-api-url
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
+1. Start the development server: `npm run dev`
+2. Access the home page to login
+3. View session information after login
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Protected Routes
+Use the `getServerAuthSession` function to protect pages:
+```typescript
+const session = await getServerAuthSession();
+if (!session) {
+  redirect('/');
+}
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Session Management
+Access user session data in components:
+```typescript
+const session = await getServerAuthSession();
+const userName = session.user?.name;
+```
 
-## Learn More
+## Summarization Implementation Tutorial
+To implement summarization in your NextAuth.js XenForo application, follow these steps:
 
-To learn more about Next.js, take a look at the following resources:
+### Step 1: Install Required Packages
+Install the required packages by running the following command:
+```bash
+npm install summarization-library
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Step 2: Import Summarization Library
+Import the summarization library in your Next.js page:
+```typescript
+import { summarize } from 'summarization-library';
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Step 3: Implement Summarization Function
+Create a function to summarize text using the summarization library:
+```typescript
+const summarizeText = async (text) => {
+  const summary = await summarize(text);
+  return summary;
+};
+```
 
-## Deploy on Vercel
+### Step 4: Integrate Summarization Function
+Integrate the summarization function into your Next.js page:
+```typescript
+const MyPage = () => {
+  const [text, setText] = useState('');
+  const [summary, setSummary] = useState('');
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  const handleSummarize = async () => {
+    const summary = await summarizeText(text);
+    setSummary(summary);
+  };
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  return (
+    <div>
+      <textarea value={text} onChange={(e) => setText(e.target.value)} />
+      <button onClick={handleSummarize}>Summarize</button>
+      <p>Summary: {summary}</p>
+    </div>
+  );
+};
+```
+
+### Step 5: Test Summarization Function
+Test the summarization function by running the application and entering text into the textarea. Click the "Summarize" button to generate a summary of the text.

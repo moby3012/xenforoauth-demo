@@ -26,10 +26,13 @@ XENFORO_SITE_URL=your-xenforo-site-url
 ```
 
 ## Usage
-0. Set up an Oauth2 application in your XenForo admin panel and copy all the necessary values into your `.env` file
-1. Start the development server: `npm run dev`
-2. Access the home page to login
-3. View session information after login
+0. Set up an Oauth2 application in your XenForo admin panel and copy all the necessary values into your `.env` file and set up the Redirect URI to 'https://yoursite/api/auth/callback/xenforo'
+1. Double Check your scopes
+2. Client Type in Xenforo Oauth2 Client Application has to be set to Confidential
+3. Fill in your environment variables in the `.env` file
+4. Start the development server: `npm run dev`
+5. Access the home page to login
+6. View session information after login
 
 ## Protected Routes
 Use the `getServerAuthSession` function to protect pages:

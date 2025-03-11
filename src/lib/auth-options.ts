@@ -4,7 +4,6 @@ import type { NextAuthOptions } from "next-auth";
 const siteUrl = process.env.XENFORO_SITE_URL;
 
 export const authOptions: NextAuthOptions = {
-  // Copy your entire authOptions configuration from route.ts here
   providers: [
     {
       id: "xenforo",

@@ -17,8 +17,12 @@ This is a Next.js application demonstrating how to implement authentication with
 ## Configuration
 Set up your environment variables in `.env`, look at the example.env for reference:
 ```
+NEXTAUTH_URL=your-website-url
 NEXTAUTH_SECRET=your-secret-key
-XENFORO_API_URL=your-xenforo-api-url
+XENFORO_CLIENT_ID=your-client-id
+XENFORO_CLIENT_SECRET=your-client-secret
+XENFORO_SITE_URL=your-xenforo-site-url
+
 ```
 
 ## Usage

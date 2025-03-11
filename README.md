@@ -15,13 +15,14 @@ This is a Next.js application demonstrating how to implement authentication with
 3. Create `.env` file with required environment variables
 
 ## Configuration
-Set up your environment variables in `.env`:
+Set up your environment variables in `.env`, look at the example.env for reference:
 ```
 NEXTAUTH_SECRET=your-secret-key
 XENFORO_API_URL=your-xenforo-api-url
 ```
 
 ## Usage
+0. Set up an Oauth2 application in your XenForo admin panel and copy all the necessary values into your `.env` file
 1. Start the development server: `npm run dev`
 2. Access the home page to login
 3. View session information after login

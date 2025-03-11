@@ -1,3 +1,5 @@
+// src/app/protected/page.tsx
+
 import { getServerAuthSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";

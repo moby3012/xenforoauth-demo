@@ -1,3 +1,5 @@
+// src/app/page.tsx
+
 import { LoginButton } from "@/components/auth/LoginButton";
 import { getServerAuthSession } from "@/lib/auth";
 
